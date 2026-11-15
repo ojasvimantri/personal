@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ojasvi Mantri | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ojasvi.css">
+</head>
+<style>
+  :root{
+  --accent:#43e8a0; --accent2:#2fc7a0;
+  --glass:rgba(255,255,255,.14); --glass-b:rgba(255,255,255,.35);
+  --text:#fff; --muted:rgba(255,255,255,.82);
+}
+body.dark{--glass:rgba(20,32,70,.5);--glass-b:rgba(130,160,255,.25);--muted:rgba(230,236,255,.8)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Poppins',sans-serif;color:var(--text);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  background:
+    linear-gradient(120deg,transparent 40%,rgba(255,255,255,.05) 40% 41%,transparent 41%),
+    linear-gradient(60deg,transparent 55%,rgba(0,20,80,.18) 55% 56%,transparent 56%),
+    radial-gradient(circle at 50% 110%,#7fa9d8 0%,transparent 45%),
+    linear-gradient(135deg,#0a56b0,#0b4a9c 50%,#0a3e86);
+  overflow:hidden;transition:background .4s;
+}
+body.dark{
+  background:
+    linear-gradient(120deg,transparent 40%,rgba(255,255,255,.03) 40% 41%,transparent 41%),
+    radial-gradient(circle at 50% 110%,#27407a 0%,transparent 45%),
+    linear-gradient(135deg,#0b1a3a,#0a1530 50%,#070e22);
+}
+.glass{background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+/* BACKGROUND EXTRAS */
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:0;pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.b1{width:320px;height:320px;background:#4f9bff;top:-60px;left:-60px}
+.b2{width:360px;height:360px;background:#43e8a0;bottom:-120px;right:-80px;opacity:.25;animation-delay:-6s}
+@keyframes drift{to{transform:translate(70px,50px) scale(1.15)}}
+.glow{position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%);
+  transform:translate(-50%,-50%);left:-300px;top:-300px}
+
+.window{
+  position:relative;z-index:1;width:min(1100px,100%);height:min(640px,calc(100vh - 48px));
+  border-radius:44px;display:flex;flex-direction:column;overflow:hidden;
+}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 60px;height:64px;background:rgba(255,255,255,.08);flex-shrink:0;
+}
+.topbar .hi{font-size:15px}
+.top-actions{display:flex;gap:10px;align-items:center}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;padding:6px 14px;border-radius:30px;
+  font:inherit;font-size:12px;color:var(--text);text-decoration:none;cursor:pointer;
+}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+
+.side{
+  position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:5;
+  display:flex;flex-direction:column;gap:12px;padding:14px 14px 14px 24px;border-radius:0 40px 40px 0;
+}
+.side button{
+  width:44px;height:44px;border-radius:50%;background:transparent;color:#fff;border:0;cursor:pointer;
+  display:grid;place-items:center;transition:background .25s;
+}
+.side button:hover,.side button.on{background:rgba(255,255,255,.3)}
+.side svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{flex:1;position:relative;min-height:0}
+.panel{position:absolute;inset:20px 50px 30px 100px;display:none;gap:26px}
+.panel.on{display:flex;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.tilt{transition:transform .15s ease-out;transform-style:preserve-3d;will-change:transform}
+.hero-card{flex:1.5;border-radius:26px;padding:44px 30px 30px;display:flex;flex-direction:column;justify-content:space-between}
+h1{font-size:clamp(26px,3.4vw,40px);line-height:1.25;font-weight:600}
+h1 b{color:var(--accent);font-weight:600}
+.hero-card p{font-size:13.5px;line-height:1.7;margin-top:14px;max-width:340px}
+.hero-card p b{color:var(--accent);font-weight:500}
+.typing{font-weight:500}
+.cursor{color:var(--accent);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{
+  align-self:flex-start;display:inline-flex;gap:12px;align-items:center;text-decoration:none;border:0;cursor:pointer;font-family:inherit;
+  padding:15px 28px;border-radius:40px;color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.8px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  box-shadow:0 0 0 8px rgba(67,232,160,.15);transition:transform .25s;
+}
+.cta:hover{transform:translateY(-3px)}
+.photo{position:relative;flex:1;border-radius:26px;overflow:hidden;min-width:0}
+.photo .initials{position:absolute;inset:0;display:grid;place-items:center;font-size:72px;font-weight:700;color:rgba(255,255,255,.55)}
+.photo img{position:relative;width:100%;height:100%;object-fit:cover;object-position:top}
+.socials{position:absolute;left:100px;bottom:-4px;display:flex;gap:18px}
+.socials a{
+  width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;
+  font-weight:700;font-size:15px;transition:transform .25s;
+}
+.socials a:hover{transform:translateY(-4px)}
+
+/* INNER PANELS */
+.box{flex:1;border-radius:26px;padding:32px;overflow:auto}
+.box h2{font-size:24px;margin-bottom:14px;font-weight:600}
+.box h2.gap{margin-top:30px}
+.box h2 b{color:var(--accent);font-weight:600}
+.box p{font-size:14px;line-height:1.8;color:var(--muted)}
+.box p+p{margin-top:12px}
+.quote{color:var(--accent)!important;font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stats div{border-radius:18px;padding:16px;text-align:center}
+.stats strong{display:block;font-size:34px;color:var(--accent)}
+.stats span{font-size:12px;color:var(--muted)}
+.facts{display:grid;gap:10px;margin-top:20px;font-size:13.5px}
+.facts span{color:var(--accent)}
+
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.chips span{padding:10px 20px;border-radius:30px;font-size:14px;opacity:0}
+.panel.on .chips span{animation:pop .5s ease forwards}
+.panel.on .chips span:nth-child(2){animation-delay:.08s}
+.panel.on .chips span:nth-child(3){animation-delay:.16s}
+.panel.on .chips span:nth-child(4){animation-delay:.24s}
+.panel.on .chips span:nth-child(5){animation-delay:.32s}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1}}
+
+/* ROADMAP */
+.road{list-style:none;display:grid;gap:6px;position:relative}
+.road li{display:flex;align-items:center;gap:16px;padding:10px 0;position:relative}
+.road li:not(:last-child)::before{content:"";position:absolute;left:8px;top:32px;bottom:-14px;width:2px;background:rgba(255,255,255,.25)}
+.road i{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.5);flex-shrink:0;background:transparent}
+.road .done i{background:var(--accent);border-color:var(--accent)}
+.road .now i{border-color:var(--accent);box-shadow:0 0 0 5px rgba(67,232,160,.25)}
+.road div{flex:1}
+.road h3{font-size:15px;font-weight:600}
+.road p{font-size:12.5px}
+.road em{font-style:normal;font-size:11px;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.15)}
+.road .done em,.road .now em{background:rgba(67,232,160,.22);color:var(--accent)}
+
+/* EMPTY, CERTIFICATES */
+.empty{border-radius:20px;padding:26px;border-style:dashed}
+.empty strong{display:block;margin-bottom:6px}
+.tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:30px;border:1px solid var(--glass-b);background:transparent;color:#fff;font:inherit;font-size:12.5px;cursor:pointer;transition:background .25s}
+.tab.on,.tab:hover{background:rgba(255,255,255,.28)}
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cert{border-radius:20px;padding:22px;min-height:150px;cursor:pointer;transition:transform .25s}
+.cert:hover{transform:translateY(-6px)}
+.cert.soon{cursor:default;border-style:dashed}
+.cert[hidden]{display:none}
+.cert h3{font-size:16px;margin:14px 0 6px}
+.cert p{font-size:12.5px}
+.badge{font-size:11px;padding:5px 12px;border-radius:20px;background:rgba(67,232,160,.22);color:var(--accent)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(5,15,40,.8);backdrop-filter:blur(6px);display:grid;place-items:center;padding:30px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:min(900px,100%);max-height:85vh;border-radius:16px}
+.lightbox button{position:absolute;top:24px;right:30px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.25);color:#fff;font-size:18px;cursor:pointer}
+
+/* CONTACT */
+.contact-list{display:grid;gap:14px;margin-top:14px}
+.contact-list a{display:flex;gap:14px;align-items:center;padding:14px 18px;border-radius:16px;color:#fff;text-decoration:none;font-size:14px}
+.contact-list a:hover{background:rgba(255,255,255,.25)}
+form{display:grid;gap:14px}
+form input,form textarea{padding:14px 16px;border-radius:14px;color:#fff;font:inherit;font-size:14px;resize:none}
+form ::placeholder{color:rgba(255,255,255,.6)}
+
+@media (max-width:860px){
+  body{overflow:auto;align-items:flex-start}
+  .window{height:auto;min-height:calc(100vh - 48px);border-radius:30px}
+  .topbar{padding:0 20px}
+  .top-actions .pill:nth-child(3){display:none}
+  .side{position:static;transform:none;flex-direction:row;justify-content:center;flex-wrap:wrap;border-radius:0;padding:10px;gap:6px}
+  .stage{padding:20px}
+  .panel{position:static;display:none;flex-direction:column}
+  .panel.on{display:flex}
+  .photo{min-height:340px;order:-1}
+  .socials{position:static;justify-content:center;padding:0 0 24px}
+  .socials a{width:50px;height:50px}
+  .certs{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.chips span{opacity:1}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="glow" id="glow"></div>
+
+<div class="window glass">
+
+  <div class="topbar">
+    <span class="hi">Hi, Welcome!</span>
+    <div class="top-actions">
+      <button class="pill glass" id="themeBtn" aria-label="Toggle theme">☼</button>
+      <a href="index.html#team" class="pill glass">← Back to Team</a>
+      <a href="#contact" class="pill glass" data-go="contact">Contact me <i></i></a>
+    </div>
+  </div>
+
+  <nav class="side glass" aria-label="Sections">
+    <button class="on" data-go="home" aria-label="Home" title="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></button>
+    <button data-go="about" aria-label="About" title="About"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>
+    <button data-go="skills" aria-label="Skills" title="Skills"><svg viewBox="0 0 24 24"><path d="M5 21V10M12 21V4M19 21v-7"/></svg></button>
+    <button data-go="journey" aria-label="Journey" title="Journey"><svg viewBox="0 0 24 24"><path d="M4 21V4M4 5h13l-2 4 2 4H4"/></svg></button>
+    <button data-go="projects" aria-label="Projects" title="Projects"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
+    <button data-go="certificates" aria-label="Certificates" title="Certificates"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/></svg></button>
+    <button data-go="contact" aria-label="Contact" title="Contact"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></button>
+  </nav>
+
+  <div class="stage">
+
+    <!-- HOME -->
+    <section class="panel on" id="home">
+      <div class="hero-card glass tilt">
+        <div>
+          <h1><b>Computer Science</b> Student: Turning Ideas into Reality</h1>
+          <p class="typing">I am a <b id="typing"></b><span class="cursor">|</span></p>
+          <p>I'm <b>Ojasvi Mantri</b>, a passionate Computer Science student at Global Institute of Technology, Jaipur, who loves turning ideas into reality through code.</p>
+        </div>
+        <a href="#about" class="cta" data-go="about">EXPLORE MY PORTFOLIO <span>→</span></a>
+      </div>
+      <div class="photo glass tilt">
+        <span class="initials">OM</span>
+        <!-- Put your photo in the same folder and name it ojasvi.jpg -->
+        <img src="D:\ojasvi.jpg" alt="Ojasvi Mantri" onerror="this.remove()">
+      </div>
+      <div class="socials">
+        <a class="glass" href="mailto:25EGJCS152@gitjaipur.com" aria-label="Email">&#9993;</a>
+        <!-- Add GitHub / LinkedIn when you have the links:
+        <a class="glass" href="YOUR_GITHUB_LINK" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+        <a class="glass" href="YOUR_LINKEDIN_LINK" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a> -->
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="panel" id="about">
+      <div class="box glass">
+        <h2>About <b>Me</b></h2>
+        <p>Hey, I'm <b>Ojasvi Mantri</b>, a passionate Computer Science student with a curiosity for technology and a love for turning ideas into reality through code.</p>
+        <p>I enjoy exploring programming and web development, experimenting with new technologies, and building my skills one line of code at a time.</p>
+        <p>I'm currently pursuing my B.Tech in Computer Science and on a journey to become a creative and skilled developer. I believe in learning by doing, thinking beyond limits, and growing with every challenge.</p>
+        <p class="quote">Dream big. Code smart. Keep creating.</p>
+      </div>
+      <div class="box glass">
+        <h2>Quick <b>Facts</b></h2>
+        <div class="stats">
+          <div class="glass"><strong class="count" data-to="5">0</strong><span>Skills</span></div>
+          <div class="glass"><strong class="count" data-to="3">0</strong><span>Learning</span></div>
+        </div>
+        <div class="facts">
+          <div><span>Name:</span> Ojasvi Mantri</div>
+          <div><span>Degree:</span> B.Tech Computer Science</div>
+          <div><span>College:</span> Global Institute of Technology, Jaipur</div>
+          <div><span>Email:</span> 25EGJCS152@gitjaipur.com</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="panel" id="skills">
+      <div class="box glass">
+        <h2>My <b>Skills</b></h2>
+        <div class="chips">
+          <span class="glass tilt">C</span><span class="glass tilt">C++</span><span class="glass tilt">HTML</span><span class="glass tilt">CSS</span><span class="glass tilt">JavaScript</span>
+        </div>
+        <h2 class="gap">Currently <b>Learning</b></h2>
+        <div class="chips">
+          <span class="glass tilt">JavaScript</span><span class="glass tilt">Frontend Development</span><span class="glass tilt">DSA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="panel" id="journey">
+      <div class="box glass">
+        <h2>Learning <b>Roadmap</b></h2>
+        <ol class="road">
+          <li class="done"><i></i><div><h3>Started B.Tech CSE</h3><p>Global Institute of Technology, Jaipur</p></div><em>Done</em></li>
+          <li class="done"><i></i><div><h3>C and C++</h3><p>Programming fundamentals and logic</p></div><em>Done</em></li>
+          <li class="done"><i></i><div><h3>HTML and CSS</h3><p>Structure and styling of web pages</p></div><em>Done</em></li>
+          <li class="now"><i></i><div><h3>JavaScript and Frontend</h3><p>Making websites interactive</p></div><em>Learning</em></li>
+          <li class="now"><i></i><div><h3>Data Structures and Algorithms</h3><p>Problem solving with DSA</p></div><em>Learning</em></li>
+          <li><i></i><div><h3>Build real projects</h3><p>Apply everything in practice</p></div><em>Next</em></li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- CERTIFICATES -->
+    <section class="panel" id="certificates">
+      <div class="box glass">
+        <h2>My <b>Certificates</b></h2>
+        <div class="tabs">
+          <button class="tab on" data-f="all">All</button>
+          <button class="tab" data-f="programming">Programming</button>
+          <button class="tab" data-f="web">Web</button>
+        </div>
+        <!-- To add a real certificate: remove "soon", add data-img="cert1.jpg",
+             and change the title and issuer. Clicking it opens the image. -->
+        <div class="certs">
+          <div class="cert glass soon" data-cat="programming"><span class="badge">Coming soon</span><h3>Certificate title</h3><p>Issuer · Year</p></div>
+          <div class="cert glass soon" data-cat="web"><span class="badge">Coming soon</span><h3>Certificate title</h3><p>Issuer · Year</p></div>
+          <div class="cert glass soon" data-cat="programming web"><span class="badge">Coming soon</span><h3>Certificate title</h3><p>Issuer · Year</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="panel" id="contact">
+      <div class="box glass">
+        <h2>Let's <b>Connect</b></h2>
+        <p>Have a question or want to work together? Send me an email.</p>
+        <div class="contact-list">
+          <a class="glass" href="mailto:25EGJCS152@gmail.com">&#9993; &nbsp;25EGJCS152@gitjaipur.com</a>
+        </div>
+      </div>
+      <div class="box glass">
+        <h2>Send a <b>Message</b></h2>
+        <form id="mailForm">
+          <input class="glass" id="fName" placeholder="Your name" required>
+          <textarea class="glass" id="fMsg" rows="4" placeholder="Your message" required></textarea>
+          <button class="cta" type="submit">SEND MESSAGE <span>→</span></button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" hidden><img id="lbImg" alt="Certificate"><button id="lbClose" aria-label="Close">✕</button></div>
+
+<script >
+  const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* 1. PANEL SWITCHING */
+const panels = $$('.panel'), btns = $$('.side button');
+function show(id) {
+  panels.forEach(p => p.classList.toggle('on', p.id === id));
+  btns.forEach(b => b.classList.toggle('on', b.dataset.go === id));
+  $('.socials').style.display = id === 'home' ? '' : 'none';
+  if (id === 'about') countUp();
+}
+$$('[data-go]').forEach(el => el.addEventListener('click', e => {
+  e.preventDefault(); show(el.dataset.go);
+}));
+
+/* 2. TYPING EFFECT */
+const words = ['Computer Science Student', 'Frontend Learner', 'Problem Solver', 'Future Developer'];
+let w = 0, c = 0, del = false;
+function type() {
+  const el = $('#typing'), word = words[w];
+  el.textContent = word.slice(0, del ? --c : ++c);
+  let wait = del ? 40 : 90;
+  if (!del && c === word.length) { del = true; wait = 1400; }
+  else if (del && c === 0) { del = false; w = (w + 1) % words.length; wait = 300; }
+  setTimeout(type, wait);
+}
+type();
+
+/* 3. 3D TILT */
+$$('.tilt').forEach(el => {
+  el.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+  });
+  el.addEventListener('mouseleave', () => el.style.transform = '');
+});
+
+/* 4. MOUSE GLOW */
+const glow = $('#glow');
+window.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+}, { passive: true });
+
+/* 5. COUNT UP */
+function countUp() {
+  $$('.count').forEach(el => {
+    const to = +el.dataset.to; let n = 0;
+    el.textContent = 0;
+    const t = setInterval(() => {
+      el.textContent = ++n;
+      if (n >= to) clearInterval(t);
+    }, 120);
+  });
+}
+
+/* 6. THEME TOGGLE */
+const themeBtn = $('#themeBtn');
+try { if (localStorage.getItem('ojasvi-theme') === 'dark') document.body.classList.add('dark'); } catch (e) {}
+function themeIcon() { themeBtn.textContent = document.body.classList.contains('dark') ? '☾' : '☼'; }
+themeIcon();
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  try { localStorage.setItem('ojasvi-theme', document.body.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+  themeIcon();
+});
+
+/* 7. CERTIFICATE FILTER + LIGHTBOX */
+$$('.tab').forEach(tab => tab.addEventListener('click', () => {
+  $$('.tab').forEach(t => t.classList.toggle('on', t === tab));
+  $$('.cert').forEach(c => {
+    c.hidden = !(tab.dataset.f === 'all' || c.dataset.cat.includes(tab.dataset.f));
+  });
+}));
+const lb = $('#lightbox');
+$$('.cert').forEach(c => c.addEventListener('click', () => {
+  if (!c.dataset.img) return;
+  $('#lbImg').src = c.dataset.img;
+  lb.hidden = false;
+}));
+$('#lbClose').addEventListener('click', () => lb.hidden = true);
+lb.addEventListener('click', e => { if (e.target === lb) lb.hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+
+/* 8. CONTACT FORM (opens email app) */
+$('#mailForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('#fName').value, msg = $('#fMsg').value;
+  location.href = `mailto:25EGJCS152@gmail.com?subject=${encodeURIComponent('Message from ' + name)}&body=${encodeURIComponent(msg)}`;
+});
+</script>
+</body>
+</html>
+
